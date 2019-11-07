@@ -7,14 +7,16 @@ const OperationTypes = {
 
 const operations = {
   π: { type: OperationTypes.CONSTANT, value: Math.PI },
-  e: { type: OperationTypes.CONSTANT, value: Math.E },
-  '√': { type: OperationTypes.UNARY, operation: Math.sqrt },
-  '±': { type: OperationTypes.UNARY, operation: operand => -operand, preventChangeInTypingState: true },
-  '+': { type: OperationTypes.BINARY, operation: (operand1, operand2) => operand1 + operand2 },
-  '-': { type: OperationTypes.BINARY, operation: (operand1, operand2) => operand1 - operand2 },
-  '×': { type: OperationTypes.BINARY, operation: (operand1, operand2) => operand1 * operand2 },
-  '÷': { type: OperationTypes.BINARY, operation: (operand1, operand2) => operand1 / operand2 },
-  '=': { type: OperationTypes.EQUALS },
+  sign: {
+    type: OperationTypes.UNARY, operation: operand => -operand, preventChangeInTypingState: true,
+  },
+  sqrt: { type: OperationTypes.UNARY, operation: Math.sqrt },
+  sq: { type: OperationTypes.UNARY, operation: operand => operand * operand },
+  add: { type: OperationTypes.BINARY, operation: (operand1, operand2) => operand1 + operand2 },
+  sub: { type: OperationTypes.BINARY, operation: (operand1, operand2) => operand1 - operand2 },
+  mul: { type: OperationTypes.BINARY, operation: (operand1, operand2) => operand1 * operand2 },
+  div: { type: OperationTypes.BINARY, operation: (operand1, operand2) => operand1 / operand2 },
+  eq: { type: OperationTypes.EQUALS },
 };
 
 const pendingBinaryOperation = (symbol, operation, firstOperand) => ({
